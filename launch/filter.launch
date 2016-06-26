@@ -1,0 +1,8 @@
+<launch>
+
+	<node pkg="kalman_filter_ros" type="tag_detection_filter" name="tag_detection_filter" output="screen">
+	<param name="tag_detection_topic" value="/dji_sdk/class_36h11/tag_detections_pose" />
+	</node>
+
+
+</launch>
