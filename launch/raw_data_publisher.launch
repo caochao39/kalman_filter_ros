@@ -1,0 +1,26 @@
+<launch>
+	<node pkg="kalman_filter_ros" type="raw_data_publisher" name="tag_detection_raw_data_publisher" output="screen">
+	<param name="tag_detection_topic" value="/dji_sdk/class_36h11/tag_detections_pose" />
+	</node>
+
+	<node pkg="kalman_filter_ros" type="tag_detection_filter" name="tag_detection_filter" output="screen">
+	<param name="tag_detection_topic" value="/dji_sdk/class_36h11/tag_detections_pose" />
+	</node>
+
+	
+  	<node name="tag_detection_raw_data_x_plot"
+    pkg="rqt_plot"
+    type="rqt_plot"
+    args="/teamhku/raw_data/tag_detection_x /teamhku/filtered_data/tag_detection_x"/>
+
+     <node name="tag_detection_raw_data_y_plot"
+    pkg="rqt_plot"
+    type="rqt_plot"
+    args="/teamhku/raw_data/tag_detection_y /teamhku/filtered_data/tag_detection_y"/>
+
+     <node name="tag_detection_raw_data_z_plot"
+    pkg="rqt_plot"
+    type="rqt_plot"
+    args="/teamhku/raw_data/tag_detection_z /teamhku/filtered_data/tag_detection_z"/>
+
+</launch>
