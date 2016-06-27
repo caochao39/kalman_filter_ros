@@ -45,16 +45,12 @@ void apriltagsPositionCallback(const geometry_msgs::PoseArray::ConstPtr& aprilta
   {
 
     z_x = apriltag_pos_msg->poses[0].position.x;
-    z_y = -apriltag_pos_msg->poses[0].position.y;
+    z_y = apriltag_pos_msg->poses[0].position.y;
     z_z = apriltag_pos_msg->poses[0].position.z;
 
   }
 }
 
-double update(double z)
-{
-
-}
 
 int main(int argc, char **argv)
 {
