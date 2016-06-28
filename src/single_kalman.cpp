@@ -19,7 +19,7 @@ KalmanFilter *kf;
 
 double new_state;
 
-void apriltagsPositionCallback(const std_msgs::Float64 filter_input_msg)
+void newStateCallback(const std_msgs::Float64 filter_input_msg)
 {
   new_state = filter_input_msg.data;
 }
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "single_kalman_filter");
   ROS_INFO("Starting a single kalman filter");
-  ros::NodeHandle nh;
+  ros::NodeHandle nh("~");
 
   double P = 1;
   double x_hat = 0;
@@ -36,11 +36,11 @@ int main(int argc, char **argv)
   double R = 10;
 
 
-  nh.param<std::string>("/single_kalman_filter/input_topic", input_topic, "/teamhku/kalman_filter/dummy_input");
-  nh.param<std::string>("/single_kalman_filter/output_topic", output_topic, "/teamhku/kalman_filter/dummy_output");
-  nh.param<std::string>("/single_kalman_filter/Q", Q, 0.00008);
-  nh.param<std::string>("/single_kalman_filter/R", R, 10);
-  nh.param<std::string>("/single_kalman_filter/x_hat", x_hat, 0);
+  nh.param<std::string>("input_topic", input_topic, "/teamhku/kalman_filter/dummy_input");
+  nh.param<std::string>("output_topic", output_topic, "/teamhku/kalman_filter/dummy_output");
+  nh.param<double>("Q", Q, 0.00008);
+  nh.param<double>("R", R, 10);
+  nh.param<double>("x0", x_hat, 0);
 
   ROS_INFO("Listening to input topic: %s", input_topic.c_str());
   ROS_INFO("Publishing to output topic: %s", output_topic.c_str());
@@ -49,8 +49,8 @@ int main(int argc, char **argv)
   ROS_INFO("R: %f", R);
   ROS_INFO("x0: %f", x_hat);
 
-  filter_output_pub = nh.advertise<std_msgs::Float64>("/teamhku/filtered_data/tag_detection_x", 1);
-
+  filter_output_pub = nh.advertise<std_msgs::Float64>(output_topic, 10);
+  filter_input_sub = nh.subscribe(input_topic, 10, newStateCallback);
 
   kf = new KalmanFilter(P, Q, R);
  

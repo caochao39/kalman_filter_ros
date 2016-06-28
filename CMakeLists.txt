@@ -130,6 +130,9 @@ add_executable(tag_detection_filter ${SOURCE_FILES})
 
 add_executable(raw_data_publisher src/raw_data_publisher.cpp)
 
+add_executable(single_kalman src/single_kalman.cpp src/kalman_filter.cpp)
+
+
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
@@ -152,6 +155,10 @@ target_link_libraries(raw_data_publisher
 target_link_libraries(tag_detection_filter
   ${catkin_LIBRARIES}
 )
+target_link_libraries(single_kalman
+  ${catkin_LIBRARIES}
+)
+
 #############
 ## Install ##
 #############
