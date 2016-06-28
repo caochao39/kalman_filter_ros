@@ -125,10 +125,10 @@ include_directories(
 # add_library(kalman_filter_ros
 #   src/${PROJECT_NAME}/kalman_filter_ros.cpp
 # )
-set(SOURCE_FILES src/kalman_filter.cpp src/tag_detection_filter.cpp)
-add_executable(tag_detection_filter ${SOURCE_FILES})
+# set(SOURCE_FILES src/kalman_filter.cpp src/tag_detection_filter.cpp)
+# add_executable(tag_detection_filter ${SOURCE_FILES})
 
-add_executable(raw_data_publisher src/raw_data_publisher.cpp)
+# add_executable(raw_data_publisher src/raw_data_publisher.cpp)
 
 add_executable(single_kalman src/single_kalman.cpp src/kalman_filter.cpp)
 
@@ -149,12 +149,12 @@ add_executable(single_kalman src/single_kalman.cpp src/kalman_filter.cpp)
 # target_link_libraries(kalman_filter_ros_node
 #   ${catkin_LIBRARIES}
 # )
-target_link_libraries(raw_data_publisher
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(tag_detection_filter
-  ${catkin_LIBRARIES}
-)
+# target_link_libraries(raw_data_publisher
+#   ${catkin_LIBRARIES}
+# )
+# target_link_libraries(tag_detection_filter
+#   ${catkin_LIBRARIES}
+# )
 target_link_libraries(single_kalman
   ${catkin_LIBRARIES}
 )
