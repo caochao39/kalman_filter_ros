@@ -1,12 +1,9 @@
 <launch>
-
 	<node pkg="kalman_filter_ros" type="single_kalman" name="single_kalman" output="screen">
-	<param name="input_topic" value="/dji_sdk/class_36h11/tag_detections_pose" />
-	<param name="output_topic" value="/dji_sdk/class_36h11/tag_detections_pose" />
-	<param name="Q" value=0.00008 />
-	<param name="R" value=10 />
-	<param name="x0" value=0 />
+		<param name="input_topic" value="/teamhku/position_track/setpoint_x" />
+		<param name="output_topic" value="/teamhku/position_track/setpoint_x_filtered" />
+		<param name="Q" value="0.00008" />
+		<param name="R" value="10" />
+		<param name="x0" value="0" />
 	</node>
-
-
 </launch>
